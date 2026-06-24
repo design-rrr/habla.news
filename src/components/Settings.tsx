@@ -8,7 +8,6 @@ import RelayEditor from "@habla/components/nostr/RelayEditor";
 import ProfileEditor from "@habla/components/nostr/ProfileEditor";
 import ZapsSettings from "@habla/components/nostr/ZapsSettings";
 import Tabs from "@habla/components/Tabs";
-import dynamic from "next/dynamic";
 
 export default function Settings() {
   const { t } = useTranslation("common");

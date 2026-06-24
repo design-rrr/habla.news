@@ -6,7 +6,10 @@ import { pubkeyAtom, relayListAtom } from "@habla/state";
 import { useUser } from "@habla/nostr/hooks";
 import RelayEditor from "@habla/components/nostr/RelayEditor";
 import ProfileEditor from "@habla/components/nostr/ProfileEditor";
-import ZapsSettings from "@habla/components/nostr/ZapsSettings";
+const ZapsSettings = dynamic(
+  () => import("@habla/components/nostr/ZapsSettings"),
+  { ssr: false }
+);
 import Tabs from "@habla/components/Tabs";
 import dynamic from "next/dynamic";
 

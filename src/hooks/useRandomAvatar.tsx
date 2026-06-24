@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { asset } from "@habla/lib/basepath";
 
 function getRandomNumber(seed, min, max) {
   return Math.floor(seed * (max - min + 1)) + min;
@@ -13,5 +14,5 @@ export function useRandomAvatar(seed) {
     return formatTwoDigits(getRandomNumber(seed, 1, 20));
   }, []);
 
-  return `/avatars/placeholder_${n}.png`;
+  return asset(`/avatars/placeholder_${n}.png`);
 }

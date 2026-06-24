@@ -2,8 +2,6 @@
 
 const isProduction = process.env.NODE_ENV === "production";
 const isStaticExport = process.env.STATIC_EXPORT === "true";
-const path = require("path");
-const emptyModule = path.resolve("./src/empty-module.js");
 
 const withPWA = isStaticExport
   ? (config) => config

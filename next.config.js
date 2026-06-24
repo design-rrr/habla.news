@@ -2,6 +2,22 @@
 
 const isProduction = process.env.NODE_ENV === "production";
 const isStaticExport = process.env.STATIC_EXPORT === "true";
+const path = require("path");
+const emptyModule = path.resolve("./src/empty-module.js");
+
+const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  transpilePackages: ["@void-cat/api"],
+  webpack: (config, { isServer }) => {
+    if (isServer && isStaticExport) {
+      config.resolve.alias["@getalby/bitcoin-connect"] = emptyModule;
+      config.resolve.alias["@getalby/bitcoin-connect-react"] = emptyModule;
+    }
+    return config;
+  },
+};
 
 const withPWA = isStaticExport
   ? (config) => config

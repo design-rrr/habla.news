@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import { Heading, Flex, Box, Img, Text } from "@chakra-ui/react";
+import { asset } from "@habla/lib/basepath";
 
 export default function NotFound() {
   const { t } = useTranslation("common");
@@ -17,7 +18,7 @@ export default function NotFound() {
         margin="0 auto"
         mt={10}
       >
-        <Img src="/family.png" alt={t("oops")} />
+        <Img src={asset("/family.png")} alt={t("oops")} />
       </Box>
     </>
   );

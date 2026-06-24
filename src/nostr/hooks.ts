@@ -61,8 +61,11 @@ export function useEvents(filter, options = {}) {
 
   let opts = { ...defaultOpts, ...rest };
   let relaySet;
-  if (relays?.length > 0) {
-    relaySet = NDKRelaySet.fromRelayUrls(relays, ndk);
+  if (relays?.length > 0 || defaultRelays?.length > 0) {
+    const allRelays = relays?.length > 0
+      ? [...new Set([...relays, ...defaultRelays])]
+      : defaultRelays;
+    relaySet = NDKRelaySet.fromRelayUrls(allRelays, ndk);
   }
 
   useEffect(() => {
@@ -92,14 +95,18 @@ export function useEvents(filter, options = {}) {
 
 export function useEvent(filter, options = {}) {
   const { ndk } = useContext(NostrContext);
+  const [defaultRelays] = useAtom(relaysAtom);
   const [event, setEvent] = useState();
 
   const { relays, ...rest } = options;
 
   let opts = { ...defaultOpts, ...rest };
   let relaySet;
-  if (relays?.length > 0) {
-    relaySet = NDKRelaySet.fromRelayUrls(relays, ndk);
+  if (relays?.length > 0 || defaultRelays?.length > 0) {
+    const allRelays = relays?.length > 0
+      ? [...new Set([...relays, ...defaultRelays])]
+      : defaultRelays;
+    relaySet = NDKRelaySet.fromRelayUrls(allRelays, ndk);
   }
 
   useEffect(() => {

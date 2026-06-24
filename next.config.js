@@ -19,13 +19,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   transpilePackages: ["@void-cat/api"],
-  webpack: (config, { isServer }) => {
-    if (isServer && isStaticExport) {
-      config.resolve.alias["@getalby/bitcoin-connect"] = emptyModule;
-      config.resolve.alias["@getalby/bitcoin-connect-react"] = emptyModule;
-    }
-    return config;
-  },
 };
 
 if (isStaticExport) {

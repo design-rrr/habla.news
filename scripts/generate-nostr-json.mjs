@@ -1,6 +1,10 @@
 if (typeof globalThis.HTMLElement === "undefined") {
   globalThis.HTMLElement = class {};
 }
+if (typeof globalThis.customElements === "undefined") {
+  globalThis.customElements = { define() {}, get() {}, whenDefined() {} };
+  globalThis.CustomElementRegistry = function(){};
+}
 
 import { writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";

@@ -4,6 +4,7 @@ import { Heading, Flex, Box, Img, Text } from "@chakra-ui/react";
 
 import Layout from "@habla/layouts/Wide";
 import Metadata from "@habla/components/Metadata";
+import { asset } from "@habla/lib/basepath";
 
 export default function ServerError() {
   const { t } = useTranslation("common");
@@ -26,7 +27,7 @@ export default function ServerError() {
           margin="0 auto"
           mt={10}
         >
-          <Img src="/family.png" alt={t("oops")} />
+          <Img src={asset("/family.png")} alt={t("oops")} />
         </Box>
       </Layout>
     </>

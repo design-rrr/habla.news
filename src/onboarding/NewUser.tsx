@@ -25,6 +25,7 @@ import ImageUploader from "@habla/components/ImageUploader";
 import useTopTags from "@habla/hooks/useTopTags";
 import { dateToUnix } from "@habla/time";
 import { getPubkey, featured } from "@habla/nip05";
+import { asset } from "@habla/lib/basepath";
 import { PROFILE, CONTACTS, RELAYS } from "@habla/const";
 import {
   defaultRelays,
@@ -296,7 +297,7 @@ export default function NewUser({ onDone }) {
         )}
         {step === Steps.FINISHED && (
           <>
-            <Image src="/family.png" alt={t("finished")} />
+            <Image src={asset("/family.png")} alt={t("finished")} />
           </>
         )}
       </Stack>

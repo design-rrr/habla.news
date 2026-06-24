@@ -10,3 +10,6 @@ if (typeof globalThis.ShadowRoot === "undefined") {
 if (typeof globalThis.CSSStyleSheet === "undefined") {
   globalThis.CSSStyleSheet = class {};
 }
+if (typeof globalThis.Document === "undefined") {
+  globalThis.Document = class {};
+}

@@ -22,7 +22,6 @@ const nextConfig = {
 if (isStaticExport) {
   nextConfig.output = "export";
   nextConfig.basePath = "/habla.news";
-  nextConfig.assetPrefix = "/habla.news/";
   nextConfig.images = { unoptimized: true };
 } else {
   nextConfig.i18n = {

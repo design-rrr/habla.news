@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { asset } from "@habla/lib/basepath";
 
 interface PageMetadata {
   title: string;
@@ -31,7 +32,7 @@ export default function Metadata({
       {metadata.image ? (
         <meta name="og:image" content={metadata.image} />
       ) : (
-        <meta name="og:image" content="https://habla.news/family.png" />
+        <meta name="og:image" content={asset("/family.png")} />
       )}
 
       {url && <meta name="twitter:url" content={url} />}
@@ -44,7 +45,7 @@ export default function Metadata({
       {metadata.image ? (
         <meta name="twitter:image" content={metadata.image} />
       ) : (
-        <meta name="twitter:image" content="https://habla.news/family.png" />
+        <meta name="twitter:image" content={asset("/family.png")} />
       )}
     </Head>
   );

@@ -25,7 +25,6 @@ jobs:
         with:
           node-version: 18
           cache: pnpm
-      - run: pnpm add -D linkedom
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm build:static
         env:

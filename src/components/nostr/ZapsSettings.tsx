@@ -25,19 +25,6 @@ import ExternalLink from "@habla/components/ExternalLink";
 import ImageUploader from "@habla/components/ImageUploader";
 import { PROFILE } from "@habla/const";
 
-function BitcoinConnectButton() {
-  const [Button, setButton] = useState(null);
-
-  useState(() => {
-    import("@getalby/bitcoin-connect-react")
-      .then((mod) => setButton(() => mod.Button))
-      .catch(() => {});
-  });
-
-  if (!Button) return null;
-  return <Button />;
-}
-
 export default function ZapsSettings({ profile, onCancel, onSave, skipText }) {
   const { t } = useTranslation("common");
   const [pubkey] = useAtom(pubkeyAtom);
@@ -47,18 +34,15 @@ export default function ZapsSettings({ profile, onCancel, onSave, skipText }) {
 
   async function publishProfile() {
     const created_at = dateToUnix();
-
     const user = profile ? { ...profile, lud16 } : { lud16 };
     delete user.id;
     delete user.emoji;
-
     const newProfile = {
       kind: PROFILE,
       content: JSON.stringify(user),
       created_at,
       tags: [],
     };
-
     try {
       await publish(newProfile, {});
     } catch (error) {
@@ -115,9 +99,6 @@ export default function ZapsSettings({ profile, onCancel, onSave, skipText }) {
         >
           {t("save")}
         </Button>
-      </Flex>
-      <Flex mt={4}>
-        <BitcoinConnectButton />
       </Flex>
     </Stack>
   );

@@ -57,15 +57,15 @@ export async function getStaticProps({ locale, params }) {
       },
     };
   }
-  const event = await getPost(pubkey, slug);
-  const profile = await getProfile(pubkey);
+  const event = (await getPost(pubkey, slug)) ?? null;
+  const profile = (await getProfile(pubkey)) ?? null;
   return {
     props: {
       profile,
       pubkey,
       slug,
       event,
-      ...(await serverSideTranslations(locale, ["common"])),
+      ...(await serverSideTranslations(locale ?? "en", ["common"])),
     },
   };
 }

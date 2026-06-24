@@ -1,3 +1,7 @@
+if (typeof globalThis.HTMLElement === "undefined") {
+  globalThis.HTMLElement = class {};
+}
+
 import { writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";

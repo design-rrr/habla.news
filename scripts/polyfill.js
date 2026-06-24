@@ -1,15 +1,21 @@
-if (typeof globalThis.HTMLElement === "undefined") {
-  globalThis.HTMLElement = class {};
-}
-if (typeof globalThis.customElements === "undefined") {
-  globalThis.customElements = { define() {}, get() {} };
-}
-if (typeof globalThis.ShadowRoot === "undefined") {
-  globalThis.ShadowRoot = class {};
-}
-if (typeof globalThis.CSSStyleSheet === "undefined") {
-  globalThis.CSSStyleSheet = class {};
-}
-if (typeof globalThis.Document === "undefined") {
-  globalThis.Document = class {};
+const { parseHTML } = require("linkedom");
+
+if (typeof globalThis.document === "undefined") {
+  const { document, window, HTMLElement, customElements, ShadowRoot } =
+    parseHTML("<!DOCTYPE html><html><body></body></html>");
+  globalThis.document = document;
+  globalThis.window = window;
+  globalThis.HTMLElement = HTMLElement;
+  globalThis.customElements = customElements;
+  globalThis.ShadowRoot = ShadowRoot;
+
+  const CSSStyleSheet = class {
+    constructor() {
+      this.cssRules = [];
+    }
+    replace(text) {
+      return Promise.resolve();
+    }
+  };
+  globalThis.CSSStyleSheet = CSSStyleSheet;
 }

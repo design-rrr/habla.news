@@ -16,6 +16,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  transpilePackages: ["@void-cat/api"],
 };
 
 if (isStaticExport) {

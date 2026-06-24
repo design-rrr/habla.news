@@ -1,5 +1,4 @@
 import { useState } from "react";
-import dynamic from "next/dynamic";
 import { useTranslation } from "next-i18next";
 import { nip19 } from "nostr-tools";
 import { useAtom } from "jotai";
@@ -26,13 +25,20 @@ import ExternalLink from "@habla/components/ExternalLink";
 import ImageUploader from "@habla/components/ImageUploader";
 import { PROFILE } from "@habla/const";
 
-const BitcoinConnectButton = dynamic(
-  () => import("@getalby/bitcoin-connect-react").then(({ Button }) => Button),
-  { ssr: false }
-);
+function BitcoinConnectButton() {
+  const [Button, setButton] = useState(null);
+
+  useState(() => {
+    import("@getalby/bitcoin-connect-react")
+      .then((mod) => setButton(() => mod.Button))
+      .catch(() => {});
+  });
+
+  if (!Button) return null;
+  return <Button />;
+}
 
 export default function ZapsSettings({ profile, onCancel, onSave, skipText }) {
-  // todo: wallet selector: webln, nwc
   const { t } = useTranslation("common");
   const [pubkey] = useAtom(pubkeyAtom);
   const [steps, setSteps] = useAtom(stepsAtom);
@@ -43,7 +49,6 @@ export default function ZapsSettings({ profile, onCancel, onSave, skipText }) {
     const created_at = dateToUnix();
 
     const user = profile ? { ...profile, lud16 } : { lud16 };
-    // remove internal fields
     delete user.id;
     delete user.emoji;
 

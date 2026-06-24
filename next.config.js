@@ -13,28 +13,51 @@ const withPWA = isStaticExport
     });
 
 const nextConfig = {
-  typescript: { ignoreBuildErrors: true },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 if (isStaticExport) {
-  // GitHub Pages static export
   nextConfig.output = "export";
   nextConfig.basePath = "/habla.news";
   nextConfig.assetPrefix = "/habla.news/";
   nextConfig.images = { unoptimized: true };
-  // PWA and i18n routing disabled — not compatible with static export
 } else {
-  // Normal Vercel/server deployment
   nextConfig.i18n = {
     defaultLocale: "en",
-    locales: ["en","es","ja","de","ru","uk","fa","it","zh","eo","sw","he"],
+    locales: [
+      "en",
+      "es",
+      "ja",
+      "de",
+      "ru",
+      "uk",
+      "fa",
+      "it",
+      "zh",
+      "eo",
+      "sw",
+      "he",
+    ],
   };
-  nextConfig.async headers() {
-    return [{ source: "/.well-known/nostr.json", headers: [{ key: "Access-Control-Allow-Origin", value: "*" }] }];
-  };
-  nextConfig.async rewrites() {
-    return [{ source: "/.well-known/nostr.json", destination: "/api/nostr" }];
-  };
+  nextConfig.headers = async () => [
+    {
+      source: "/.well-known/nostr.json",
+      headers: [
+        {
+          key: "Access-Control-Allow-Origin",
+          value: "*",
+        },
+      ],
+    },
+  ];
+  nextConfig.rewrites = async () => [
+    {
+      source: "/.well-known/nostr.json",
+      destination: "/api/nostr",
+    },
+  ];
 }
 
 module.exports = withPWA(nextConfig);

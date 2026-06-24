@@ -2,11 +2,11 @@ if (typeof globalThis.HTMLElement === "undefined") {
   globalThis.HTMLElement = class {};
 }
 if (typeof globalThis.customElements === "undefined") {
-  globalThis.customElements = { define() {}, get() {}, };
+  globalThis.customElements = { define() {}, get() {} };
 }
-if (typeof globalThis.document === "undefined") {
-  globalThis.document = { createElement() { return {}; } };
+if (typeof globalThis.ShadowRoot === "undefined") {
+  globalThis.ShadowRoot = class {};
 }
-if (typeof globalThis.navigator === "undefined") {
-  globalThis.navigator = { userAgent: "Node" };
+if (typeof globalThis.CSSStyleSheet === "undefined") {
+  globalThis.CSSStyleSheet = class {};
 }

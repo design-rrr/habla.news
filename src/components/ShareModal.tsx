@@ -21,6 +21,7 @@ import {
 } from "@habla/components/nostr/ArticleLink";
 import InputCopy from "@habla/components/InputCopy";
 import { useUser } from "@habla/nostr/hooks";
+import { siteUrl } from "@habla/lib/basepath";
 import { useNostrAddress } from "@habla/hooks/useNostrAddress";
 import { getHandle } from "@habla/nip05";
 
@@ -47,8 +48,8 @@ export default function ShareModal({ event, isOpen, onClose }) {
             <Heading fontSize="xl">{t("share-url")}</Heading>
             <Text>{t("share-url-cta")}</Text>
             <InputCopy
-              copyText={`https://habla.news${link}`}
-              text={`habla.news${link}`}
+              copyText={siteUrl(link)}
+              text={link}
             />
             <Heading fontSize="xl">{t("share-nostr")}</Heading>
             <Text>{t("share-nostr-cta")}</Text>

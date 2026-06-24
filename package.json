@@ -3,8 +3,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "i18n": "i18next"
+    "build:static": "node scripts/generate-nostr-json.mjs && next build",
+    "start": "next start"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.2",
